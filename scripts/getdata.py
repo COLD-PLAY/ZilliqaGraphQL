@@ -272,6 +272,6 @@ class GetData(object):
 			self.run()
 
 if __name__ == "__main__":
-	uri, user, pwd, curTxBlockNum = "http://localhost:7474", "neo4j", "liaozhou1998", 232894
+	uri, user, pwd, curTxBlockNum = "http://localhost:7474", "neo4j", "liaozhou1998", 253841
 	Geter = GetData(uri, user, pwd, curTxBlockNum)
 	Geter.run()
