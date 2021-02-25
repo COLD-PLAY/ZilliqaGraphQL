@@ -1,0 +1,70 @@
+.line {
+	border: 0;
+	height: 8px;
+}
+input[type=text] {
+	/*设置边框属性*/
+	border: 1px solid #DCDEE0;
+	height: 50px;
+	padding: 0px 16px;
+	font-size: 14px;
+	color: #555555;
+	width:100%;
+}
+input[type=submit] {
+	padding: 12px 24px;
+	font-size: 18px;
+	/*设置文字位置（默认居中）*/
+	text-align: center;
+	color: #ffffff;
+	background-color: #27A9E3;
+	border: none;
+	width: 100%;
+}
+.box {
+	margin: 50px;
+	/*设置最小高度 和最大宽度*/
+	min-height: 420px;
+	max-width: 420px;
+	padding: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: border-box;
+	color: #555555;
+}
+a {
+	color: #27A9E3;
+}
+.docs {
+	font-size: larger;
+}
+#method {
+	width: 100%;
+	font-size: medium;
+}
+#api_method {
+	width: 100%;
+	font-size: medium;
+}
+input::-webkit-input-placeholder {
+	color: #DCDEE0;
+}
+#res_json {
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+/* 画布 */
+#cy {
+	height: 100%;
+	width: 50%;
+	background-color: #f9f9f9;
+	float: right;
+}
+/* 画布 */
+#echarts {
+	height: 100%;
+	width: 50%;
+	background-color: #f9f9f9;
+	float: right;
+}

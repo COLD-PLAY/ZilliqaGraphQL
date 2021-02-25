@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+		<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="../static/js/echarts-all.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../static/js/drawl.js" charset="utf-8"></script>
+		<script>
+			$(function(){
+				var res_ = eval('({{res_|safe }})');
+				var myChart = echarts.init(document.getElementById('echarts'), 'macarons');
+				// create nodes
+				nodes = res_.nodes;
+				// create links
+				links = res_.links;
+				categoryArray = [{name:"TxBlock"}, {name:"DsBlock"}, {name:"Account"}, {name:"Tx"}];
+				jsondata = {"categories":categoryArray, "nodes":nodes, "links":links};
+				// 数据格式为Json格式
+				createGraph(myChart, jsondata);
+			});
+		</script>
+	</head>
+
+	<body>
+		<textarea name="res_json" id="res_json">{{res}}</textarea>
+		<div id="echarts">{{res_}}</div>
+	</body>
+</html>

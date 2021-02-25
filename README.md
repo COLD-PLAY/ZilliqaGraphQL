@@ -1,5 +1,4 @@
-1. Demo's File Structure
-
+### 1. Demo's File Structure
 ```
 ─Zilliqa
    ├─documets
@@ -26,9 +25,13 @@
    └─app.py
 ```
 ### 2. How to Use
-​		the [neo4j url](http://54.254.250.156:7474/), a remote neo4j graph database, check the current `BlockNum` by input `MATCH (n:TxBlock) RETURN COUNT(n)` and input `query` of neo4j to get information you wanna know. And you can find the data in the database at [here](documents/document.md).
-
-​		etc.
+#### 2.1 Query Interface
+&emsp;&emsp;You can choose **```'Method': API or CQL```**, and after you choose **```API```**, you'll continue to choose **```'api_method': contains getBalance, getTxs, getMiners, getAccountTxs, getMinedBlock```**
+![picture1.query](pictures/index.png)
+#### 2.2 Result Interface
+&emsp;&emsp;You'll get the json_data of your query  on the page's left and **one echarts graph** on the right.
+![picture2.result](pictures/result.png)
 
 ### 3. Docs
+&emsp;&emsp;the apis' doc is [API-Docs](documents/apis.md).
 &emsp;&emsp;the demo's doc is [Demo-Docs](documents/document.md).

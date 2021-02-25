@@ -87,9 +87,10 @@ class GetData(object):
 		Ds2Tx = Relationship(DsBlock, "has", TxBlock)
 		##########################################################
 		# 为has 和in 属性添加排序信息，即TxBlock 是DSBlock 中的第几个
-		cur_number = len(self.matcher_relation.match([DsBlock], "has"))
-		Tx2Ds["order"] = cur_number+1
-		Ds2Tx["order"] = cur_number+1
+		# cur_number = len(self.matcher_relation.match([DsBlock], "has"))
+		order = int(blockNum) % 100
+		Tx2Ds["order"] = order+1
+		Ds2Tx["order"] = order+1
 
 		# 创建Miner节点及其与TxBlock节点之间的挖与被挖关系
 		miner_addr_old, miner_addr_new = self.getAddress(res["header"]["MinerPubKey"], type_="pubKey")
@@ -272,6 +273,6 @@ class GetData(object):
 			self.run()
 
 if __name__ == "__main__":
-	uri, user, pwd, curTxBlockNum = "http://localhost:7474", "neo4j", "liaozhou1998", 253841
+	uri, user, pwd, curTxBlockNum = "http://localhost:7474", "neo4j", "liaozhou1998", 320752
 	Geter = GetData(uri, user, pwd, curTxBlockNum)
 	Geter.run()

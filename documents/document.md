@@ -1,4 +1,4 @@
-## 一、19-5-30<u>（7-23：下划线+粗 表示更新）</u><span style="color:red">（9-15：红色加粗字体 表示更新）</span>
+## 一、19-5-30<u>（6-27：下划线+粗 表示更新）</u><span style="color:red">（7-15：红色加粗字体 表示更新）</span>
 ### 初步下载到Neo4J中及节点 & 关系的定义和展示
 #### 1 利用[官方提供的JSON-RPC API](https://apidocs.zilliqa.com/#introduction)以及Python的[Requests](http://docs.python-requests.org)库和[py2neo]库(https://py2neo.org/v4/)对Zilliqa上的数据进行下载并将数据保存到[Neo4J](https://neo4j.com/)图形数据库中。在getdata.py文件中分别对Zilliqa链上的数据进行了初步的分类和下载保存。
 ##### 1.1 分别有以下四种label：
@@ -51,11 +51,25 @@
 
 #### <u>3 API设计 & 实现</u>
 ##### <u>3.1 实现的API</u>
+&emsp;&emsp;<u>**详见[API Introduction](apis.md)**</u>
+```python
+1. getBalance(address) # 获取address 账户的余额
+2. getTxs(address1, address2, type, start, end) # 获取账户1、2发生过的交易
+3. getMiners(start, end) # 获取从start 到end 过程中的所有矿工
+4. getAccountTxs(address) # 获取address 账户发生过的所有交易
+5. getMinedBlock(address) # 获取address 账户挖过的所有块
+6. 
+```
 
-待设计。
+##### <u>3.2 操作界面</u>
+&emsp;&emsp;<u>**查询界面，可供选择**</u>
+![图5.查询界面，可供选择](../pictures/index.png)
+&emsp;&emsp;<u>**结果界面，返回json数据和简单的图形**</u>
+![图6.结果界面，返回json数据和简单的图形](../pictures/result.png)
 
 #### <u>4 Issues & Operations</u>
 ##### <u>4.1 Issues</u>
+<u><b>
 1. 19/06/22，昨晚同步的时候出现了`GetTransaction` 出现错误的情况，跟代码无关，是api 的问题。
 	解决：`GetTransaction` 错误则重新`GetTransaction`
 2. 19/06/22，Tx 已存在不该这么写，否则会在删除TxBlock 时失去TxBlock 与Tx 之间的关系。
@@ -66,15 +80,16 @@
 	解决：`py2neo.data.Relationship.start_node/end_node, list(py2noe.data.Relationship.types())`
 4. 19/06/25，Python-Flask向js传递json数据时js解析数据出现错误。
 	解决：`js code: eval({{json_data|safe }})`，需要加上`safe `
-5. 19/07/18，`getdata.py`代码同步速度缓慢，一个交易`5s`，需进行优化。
-	解决：待解决（已解决，跟网络环境有关）
-6. 19/08/27，`app.py`代码查询节点数目过多时速度缓慢，需进行优化。
+5. 19/06/26，`getdata.py`代码同步速度缓慢，一个交易`5s`，需进行优化。
 	解决：待解决
-7. 19/09/02，`175334`块出现问题，似乎是撤回了一些个交易，无法查到其中的19个交易信息，导致getdata.py 跑不动了。
+6. 19/06/27，`app.py`代码查询节点数目过多时速度缓慢，需进行优化。
+	解决：待解决
+7. 19/07/25，`175334`块出现问题，似乎是撤回了一些个交易，无法查到其中的19个交易信息，导致getdata.py 跑不动了。
 	解决：在getdata.py中对该块进行特殊处理即可
-9. 19/09/20， `232894`块由于不知名原因断开同步，检查日志后未发现异常，继续更新
-10. 
+8. 
+</b></u>
 ##### <u>4.2 py2neo 操作</u>
+<u><b>
 ```python
 1. walk(GraphObject)
 2. dict(GraphObject)
@@ -84,9 +99,11 @@
 6. list(py2neo.data.Relationship.types())
 7. 
 ```
-常用查询语句:
+</b></u>
 
+<u><b>常用查询语句:
 ```batch
 match (n:TxBlock{BlockNum:"59903"})-[has]->(p:Tx)return count(p)
 match ()-[p:has]->() return count(p)
 ```
+</b></u>
